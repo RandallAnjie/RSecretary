@@ -1,0 +1,54 @@
+# RSecretary 配置文件示例
+# 复制此文件为 config.yaml 并填入你的实际配置
+
+# Gemini AI 配置
+gemini:
+  api_key: "your_gemini_api_key_here"
+  model: "gemini-pro"
+  temperature: 0.7
+  max_tokens: 1000
+
+# Notion 配置
+notion:
+  token: "your_notion_integration_token_here"
+  databases:
+    accounting: "your_accounting_database_id"
+    subscriptions: "your_subscriptions_database_id" 
+    todos: "your_todos_database_id"
+
+# 机器人配置
+bots:
+  # Telegram Bot
+  telegram:
+    enabled: false
+    token: "your_telegram_bot_token"
+
+  # Synology Chat机器人
+  synology_chat:
+    enabled: false
+    webhook_url: "your_synology_webhook_url"
+    token: "your_synology_token"
+    verify_ssl: false  # 禁用SSL验证（适用于自签名证书）
+    # Ngrok调试配置
+    use_ngrok: false
+    ngrok_auth_token: ""  # Ngrok认证令牌（可选，免费用户无需填写）
+    ngrok_domain: ""  # Ngrok自定义域名（可选，付费用户可设置）
+    local_port: 8844  # 本地监听端口
+
+# 定时任务配置
+scheduler:
+  enabled: true
+  daily_push_time: "08:00"  # 每日推送时间
+  timezone: "Asia/Shanghai"  # 时区设置
+
+# 系统配置
+system:
+  log_level: "INFO"
+  log_file: "logs/rsecretary.log"
+  timezone: "Asia/Shanghai"
+  
+# 任务配置
+tasks:
+  default_currency: "CNY"
+  auto_save: true
+  backup_interval: 3600
