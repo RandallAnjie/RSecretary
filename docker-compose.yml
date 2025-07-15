@@ -2,54 +2,11 @@ version: '3.8'
 
 services:
   rsecretary:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ranjie/rsecretary:latest
     container_name: rsecretary
     restart: unless-stopped
-    
-    # 环境变量文件
-    env_file:
-      - .env
-    
-    # 挂载配置和日志目录
     volumes:
       - ./config:/app/config
       - ./logs:/app/logs
-      - ./data:/app/data  # 持久化数据目录
-    
-    # 端口映射
     ports:
       - "8080:8080"
-    
-    # 健康检查
-    healthcheck:
-      test: ["CMD", "python", "-c", "print('healthy')"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    
-    # 资源限制
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.5'
-          memory: 256M
-
-  # 可选：Redis缓存服务
-  redis:
-    image: redis:7-alpine
-    container_name: rsecretary-redis
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    command: redis-server --appendonly yes
-
-volumes:
-  redis_data: 
