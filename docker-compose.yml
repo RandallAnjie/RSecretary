@@ -5,6 +5,10 @@ services:
     image: ranjie/rsecretary:latest
     container_name: rsecretary
     restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+      - LOG_LEVEL=INFO
+    
     volumes:
       - ./config:/app/config
       - ./logs:/app/logs
